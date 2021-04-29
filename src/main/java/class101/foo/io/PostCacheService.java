@@ -3,6 +3,7 @@ package class101.foo.io;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ public class PostCacheService {
 	private final PostRepository postRepository;
 	private Page<Post> firstPostPage;
 
+	@Scheduled(cron = "* * * * * *")
 	public void updateFirstPostPage() {
 		postRepository.findAll(
 				PageRequest.of(0, 20, Sort.by("id").descending())

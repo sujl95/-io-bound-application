@@ -22,7 +22,7 @@ public class PostController {
 
     private final Producer producer;
     private final ObjectMapper objectMapper;
-    private PostCacheService postCacheService;
+    private final PostCacheService postCacheService;
 
     // 1. 글을 작성한다.
     @PostMapping("/post")
@@ -35,7 +35,7 @@ public class PostController {
 
     // 2. 글 목록을 페이징하여 변환
     @GetMapping("/posts")
-    public Page<Post> getPostList(@RequestParam(defaultValue = "1") Integer page) {
+    public Page<Post> getPostList(@RequestParam(defaultValue = "1", required = false) Integer page) {
         if (page.equals(1)) {
             return postCacheService.getFirstPostPage();
         } else {
