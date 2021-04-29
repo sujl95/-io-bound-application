@@ -30,20 +30,18 @@ public class PostController {
         String jsonPost = objectMapper.writeValueAsString(post);
         producer.sendTo(jsonPost);
         return post;
-        // return postRepository.save(post);
     }
 
     // 2. 글 목록을 페이징하여 변환
     @GetMapping("/posts")
-    public Page<Post> getPostList(@RequestParam(defaultValue = "1", required = false) Integer page) {
+    public Page<Post> getPostList(@RequestParam(defaultValue = "1") Integer page) {
         if (page.equals(1)) {
             return postCacheService.getFirstPostPage();
         } else {
             return postRepository.findAll(
-                    PageRequest.of(page -1, PAGE_SIZE, Sort.by("id").descending())
+                    PageRequest.of(page - 1, PAGE_SIZE, Sort.by("id").descending())
             );
         }
-
     }
 
     // 3. 글 번호로 조회

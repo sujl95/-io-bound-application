@@ -17,13 +17,13 @@ public class PostCacheService {
 
 	@Scheduled(cron = "* * * * * *")
 	public void updateFirstPostPage() {
-		postRepository.findAll(
+		firstPostPage = postRepository.findAll(
 				PageRequest.of(0, 20, Sort.by("id").descending())
 		);
 	}
 
 	public Page<Post> getFirstPostPage() {
-		return firstPostPage;
+		return this.firstPostPage;
 	}
 
 }
