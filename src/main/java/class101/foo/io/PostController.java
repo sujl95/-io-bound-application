@@ -2,9 +2,6 @@ package class101.foo.io;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
