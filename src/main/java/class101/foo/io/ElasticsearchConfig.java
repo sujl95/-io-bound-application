@@ -3,6 +3,7 @@ package class101.foo.io;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -26,6 +27,6 @@ public class ElasticsearchConfig {
 			hostList.add(new HttpHost(host, port, "http"));
 		}
 		RestClientBuilder builder = RestClient.builder(hostList.toArray(new HttpHost[hostList.size()]));
-		return  new RestHighLevelClient(builder)
+		return new RestHighLevelClient(builder);
 	}
 }
